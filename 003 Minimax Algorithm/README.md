@@ -38,8 +38,12 @@
 + AI for two player games
 + originally developed for "zero sum" games.
 + main version good enough for tic-tac-toe (XO)
-+ it could be useful for chess, back    
-+ try to minimze **maximum loss** 
++ it could be useful for chess, back 
++ try to minimze **maximum loss**
+  + in the other words: we try to win if other player play optimum
+  + we assume that other players plays really well, we want to increase  our chance 
+
+
 
 ```pascal
 function minimax(node, depth, maximizingPlayer) is
@@ -55,10 +59,18 @@ function minimax(node, depth, maximizingPlayer) is
         for each child of node do
             value := min(value, minimax(child, depth − 1, TRUE))
         return value
-        
-        
+
+
 (* Initial call *)
 minimax(origin, depth, TRUE)
 ```
+
++ more: [wikipedia](https://en.wikipedia.org/wiki/Minimax)
++ even more: [game theory](https://en.wikipedia.org/wiki/Game_theory) and [nash equilibrium](https://en.wikipedia.org/wiki/Nash_equilibrium)
+
+
+
++ example
+![simple example](./images/1.jpg)
 
 
