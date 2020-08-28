@@ -74,3 +74,9 @@ minimax(origin, depth, TRUE)
 ![simple example](./images/1.jpg)
 
 
+### tree?
++ DS? we don't know what is tree yet.
++ paths to finish.
++ each player make a choice and we move in tree.
+
+
