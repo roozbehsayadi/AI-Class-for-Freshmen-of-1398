@@ -84,14 +84,16 @@ def minimax(board, depth, is_computer):
     # return type: (x, y), optimum_score
     if depth == 0 or game_over(board):
         return (-1, -1), evaluate(board)
-    
+
     player = 'x' if is_computer else 'o' 
 
+    # setup minimum or maximum variable
     if is_computer: 
         best = [(-1, -1), -inf]
     else:
         best = [(-1, -1), +inf]
 
+    # explore all possible moves
     for x, y in empty_cells(board):
         
         # handle board copies

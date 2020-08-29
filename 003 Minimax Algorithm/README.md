@@ -13,6 +13,7 @@ a, b, c = [1, 2, 3]
 x, y = (1, 2)
 ```
 
++ function return tuple: `return a,b` or `return (1,2)`
 + enumerate: use for-each and still access to index
 
 ```python
@@ -66,8 +67,8 @@ for i, val in enumerate(['a','b','c']):
   + try to win although other player play optimum
   + we assume that other players plays really well 
 + we are **maximizer** and opponent is **minimizer**. (maximize and minimize chance of our win.)
-
-+ example 1
++ in graph, each node represents an state in game. leaf states show that game is finished
++ example
   ![simple example](./images/1.jpg)
 
 
@@ -172,8 +173,8 @@ def evaluate(b):
 # Driver code 
 if __name__ == "__main__": 
 	board = [['x', '_', 'o'], 
-			['_', 'x', 'o'], 
-			['_', '_', 'x']] 
+		 	 ['_', 'x', 'o'], 
+			 ['_', '_', 'x']] 
 	value = evaluate(board) 
 	print("The value of this board is", value) 
 # source: https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-2-evaluation-function
@@ -195,10 +196,71 @@ if __name__ == "__main__":
 ## Tic Tac Toe with Minimax
 
 + how to handle board copies?
-+ what is depth in this game?
-+ minimax return type:
-  1. best score possible in this branch 
-  2. x, y of optimum move
 
-+ run `./step3.py`
-+ 
++ what is depth in this game?
+
++ minimax return type:
+
+  1. best score possible in this branch: calculated when depth == 0 (base case)
+  2. x, y of optimum move: used in `ai` function
+  3. we can re-write it in order to just return best possible score, then we need another function to determine best move based on minimax (we do this in C, Java)
+
+  ```c
+  // This will return the best possible move for the player 
+  Move findBestMove(char board[3][3]) { 
+      int bestVal = -1000; 
+      Move bestMove; 
+      bestMove.row = -1; 
+      bestMove.col = -1; 
+      // Traverse all cells, evaluate minimax function for 
+      // all empty cells. And return the cell with optimal 
+      // value. 
+      for (int i = 0; i<3; i++) 
+      { 
+          for (int j = 0; j<3; j++) 
+          { 
+              // Check if cell is empty 
+              if (board[i][j]=='_') 
+              { 
+                  // Make the move 
+                  board[i][j] = player; 
+                  // compute evaluation function for this 
+                  // move. 
+                  int moveVal = minimax(board, 0, false); 
+                  // Undo the move 
+                  board[i][j] = '_'; 
+                  // If the value of the current move is 
+                  // more than the best value, then update 
+                  // best/ 
+                  if (moveVal > bestVal) 
+                  { 
+                      bestMove.row = i; 
+                      bestMove.col = j; 
+                      bestVal = moveVal; 
+                  } 
+              } 
+          } 
+      } 
+    
+      printf("The value of the best Move is : %d\n\n", 
+              bestVal); 
+    
+      return bestMove; 
+  } 
+  ```
+
++ run `./step4.py`
+
+
+
+## alpha-beta pruning
+
++ are calculate all possible moves necessary?
++ can we prune some branches?
++ break our while if we know there is nothing good to happen!
++ **this will not change behavior of program**, we can still determine best move with better performance
+
+
+
++ read more: [geeks for geeks](https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-4-alpha-beta-pruning/?ref=rp)
++ watch more: [this really awesome video in youtube](https://www.youtube.com/watch?v=l-hh51ncgDI)
