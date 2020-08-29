@@ -11,7 +11,7 @@
 
 
 ### backtracking
-+ not related to kali linux and hack stuff
++ not related to Kali Linux and hack stuff
 + some kind of algorithm
 + explore all possible situations
 + not optimal, but still could be useful
@@ -29,20 +29,20 @@
 + each player try to win
 + they **do best to win** -> play optimum
 + red turn, black turn, red turn, black turn
-+ each turn, player try to **maximaze** chance of win (minimaze chance of loss!).
++ each turn, player try to **maximize** chance of win (minimize chance of loss!).
 + what is chance of win? in chess we can calculate it.
-+ we can use minimax to maximaze our chance of win and develop some AI
++ we can use minimax to maximize our chance of win and develop some AI
 
 
 ### minimax
 + AI for two player games
 + originally developed for "zero sum" games.
-+ main version good enough for tic-tac-toe (XO)
++ main version good enough for Tic-Tac-Toe (XO)
 + it could be useful for chess, back 
-+ try to minimze **maximum loss**
++ try to minimize **maximum loss**
   + in the other words: we try to win if other player play optimum
   + we assume that other players plays really well, we want to increase  our chance 
-
++ we are **maximizer** and opponent is **minimizer**. maximize and minimize chance of our win.
 
 
 ```pascal
@@ -70,8 +70,11 @@ minimax(origin, depth, TRUE)
 
 
 
-+ example
++ example 1
 ![simple example](./images/1.jpg)
++ example 2
+![step1 example](https://media.geeksforgeeks.org/wp-content/uploads/minmax.png)
+and then ![filled](https://media.geeksforgeeks.org/wp-content/uploads/minmax1.png)
 
 
 ### tree?
@@ -79,4 +82,68 @@ minimax(origin, depth, TRUE)
 + paths to finish.
 + each player make a choice and we move in tree.
 
+![XO tree](http://files.codinghell.ch/pictures/2012-08-31-Tic-tac-toe-game-tree.png)
+
+
+
+## apply minimax for Tic-Tac-Toe
+
+![XO tree](https://materiaalit.github.io/intro-to-ai/img/exercises/ex2/tree_Ex2_2-90b2e222.png)
+
+
+
++ how to calculate base cases? v=?  	
++ we need **evaluation function**
++ check status of a board:
+
+  1. X wins
+  2. O wins
+  3. Tie
++ assume that we are x
+  +  X wins: +1
+  + O wins: -1
+  + Tie: 0
+
+let's write it:
+
+```python
+def evaluate(b): 
+	# Checking for Rows for X or O victory. 
+	for row in range(0, 3): 
+		if b[row][0] == b[row][1] and b[row][1] == b[row][2]: 
+			if b[row][0] == 'x': 
+				return +1
+			elif b[row][0] == 'o': 
+				return -1
+	# Checking for Columns for X or O victory. 
+	for col in range(0, 3): 
+		if b[0][col] == b[1][col] and b[1][col] == b[2][col]: 
+			if b[0][col]=='x': 
+				return +1
+			elif b[0][col] == 'o': 
+				return -1
+	# Checking for Diagonals for X or O victory. 
+	if b[0][0] == b[1][1] and b[1][1] == b[2][2]: 
+		if b[0][0] == 'x': 
+			return +1
+		elif b[0][0] == 'o': 
+			return -1
+	if b[0][2] == b[1][1] and b[1][1] == b[2][0]: 
+		if b[0][2] == 'x': 
+			return +1
+		elif b[0][2] == 'o': 
+			return -1
+	# Else if none of them have won then return 0 
+	return 0
+	
+# Driver code 
+if __name__ == "__main__": 
+	board = [['x', '_', 'o'], 
+			['_', 'x', 'o'], 
+			['_', '_', 'x']] 
+	value = evaluate(board) 
+	print("The value of this board is", value) 
+# source: https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-2-evaluation-function
+
+```
 
