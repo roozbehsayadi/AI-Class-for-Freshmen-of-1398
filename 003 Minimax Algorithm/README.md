@@ -260,8 +260,35 @@ if __name__ == "__main__":
 + break our while if we know there is nothing good to happen!
 + **this will not change behavior of program**, we can still determine best move with better performance
 + add alpha, beta parameters to minimax function
++ alpha: the best value that the maximizer currently can guarantee at that level or above.
++ beta: the best value that the minimizer currently can guarantee at that level or above.
 
+```python
+def minimax(node, depth, isMaximizingPlayer, alpha, beta):
+    if node is a leaf node :
+        return value of the node   
+    if isMaximizingPlayer :
+        bestVal = -INFINITY 
+        for each child node :
+            value = minimax(node, depth+1, false, alpha, beta)
+            bestVal = max( bestVal, value) 
+            alpha = max( alpha, bestVal)
+            if beta <= alpha:
+                break
+        return bestVal
 
+    else :
+        bestVal = +INFINITY 
+        for each child node :
+            value = minimax(node, depth+1, true, alpha, beta)
+            bestVal = min( bestVal, value) 
+            beta = min( beta, bestVal)
+            if beta <= alpha:
+                break
+        return bestVal
 
+// Calling the function for the first time.
+minimax(0, 0, true, -INFINITY, +INFINITY)
+```
 + read more: [geeks for geeks](https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-4-alpha-beta-pruning/?ref=rp)
 + watch more: [this really awesome video in youtube](https://www.youtube.com/watch?v=l-hh51ncgDI)
