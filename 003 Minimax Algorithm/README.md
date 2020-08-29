@@ -259,6 +259,7 @@ if __name__ == "__main__":
 + can we prune some branches?
 + break our while if we know there is nothing good to happen!
 + **this will not change behavior of program**, we can still determine best move with better performance
++ add alpha, beta parameters to minimax function
 
 
 
