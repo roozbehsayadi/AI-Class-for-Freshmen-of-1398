@@ -1,6 +1,6 @@
 from random import choice
 from time import sleep
-
+from math import inf
 
 def create_empty_board(): 
     return [['_', '_', '_'],
@@ -63,8 +63,6 @@ def set_move(x, y, board, player):
     board[x][y] = player
     return True
 
-
-
 def clear_screen():
     print("\x1b[H\x1b[2J\x1b[3J", end="")
 
@@ -80,16 +78,48 @@ def player(board):
         # get input again
         player(board)
 
+###############################################
+
+def minimax(board, depth, is_computer):
+    # return type: (x, y), optimum_score
+    if depth == 0 or game_over(board):
+        return (-1, -1), evaluate(board)
+    
+    player = 'x' if is_computer else 'o' 
+
+    if is_computer: 
+        best = [(-1, -1), -inf]
+    else:
+        best = [(-1, -1), +inf]
+
+    for x, y in empty_cells(board):
+        
+        # handle board copies
+        board[x][y] = player
+        _, score = minimax(board, depth - 1, not is_computer)
+        board[x][y] = '_' # revert board change
+
+        # maximizer
+        if is_computer and (score > best[1]):
+            best = [(x, y), score]
+        # minimizer
+        if (not is_computer) and (score < best[1]):
+            best = [(x, y), score]
+
+    return best
+
+
 def ai(board):
     print("ai is thinking")
-    x, y = choice(empty_cells(board))
+    depth = len(empty_cells(board))
+    (x, y), _ = minimax(board, depth, is_computer=True)
     set_move(x, y, board, 'x')
 
 if __name__ == "__main__":
     board = create_empty_board()
     player_turn = True
     while len(empty_cells(board)) > 0 and not game_over(board):
-        clear_screen()
+        #clear_screen()
         print_board(board)
         if player_turn:
             player(board)

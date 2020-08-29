@@ -6,7 +6,21 @@
 
 ### review: tuple and enumerate 
 + tuple: immutable list!
-+ enumerate: use for-each and still access to indix
++ tuple unpack: 
+
+```python
+a, b, c = [1, 2, 3]
+x, y = (1, 2)
+```
+
++ enumerate: use for-each and still access to index
+
+```python
+for i, val in enumerate(['a','b','c']):
+    pass
+```
+
+
 
 
 ### review: recursion
@@ -182,7 +196,9 @@ if __name__ == "__main__":
 
 + how to handle board copies?
 + what is depth in this game?
-+ 
++ minimax return type:
+  1. best score possible in this branch 
+  2. x, y of optimum move
 
 + run `./step3.py`
 + 
