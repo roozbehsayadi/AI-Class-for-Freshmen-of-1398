@@ -1,16 +1,23 @@
-# session3: MinMax algorithm
+# session 3: Min-max Algorithm
 + min-max
 + minimax
 + saddle point (نقطه زینی)
 
-### recursion
+
+### review: tuple and enumerate 
++ tuple: immutable list!
++ enumerate: use for-each and still access to indix
+
+
+### review: recursion
+
 + review fib: fib(n) use fib(n-1) and fib(n-2)
 + solve smaller problem(s) in order to solve big problem 
 + base case: we already know the answer for the small problem
 + more: [wikipedia](https://en.wikipedia.org/wiki/Recursion_(computer_science))
 
 
-### backtracking
+### intro: backtracking
 + not related to Kali Linux and hack stuff
 + some kind of algorithm
 + explore all possible situations
@@ -24,7 +31,7 @@
 + more: [backtracking](https://en.wikipedia.org/wiki/Backtracking)
 
 
-### two-player game(!)
+### review: two-player game(!)
 + chess for instance
 + each player try to win
 + they **do best to win** -> play optimum
@@ -34,15 +41,17 @@
 + we can use minimax to maximize our chance of win and develop some AI
 
 
-### minimax
+
+## minimax
+
 + AI for two player games
 + originally developed for "zero sum" games.
 + main version good enough for Tic-Tac-Toe (XO)
-+ it could be useful for chess, back 
++ it could be useful for chess, backgammon 
 + try to minimize **maximum loss**
-  + in the other words: we try to win if other player play optimum
-  + we assume that other players plays really well, we want to increase  our chance 
-+ we are **maximizer** and opponent is **minimizer**. maximize and minimize chance of our win.
+  + try to win although other player play optimum
+  + we assume that other players plays really well 
++ we are **maximizer** and opponent is **minimizer**. (maximize and minimize chance of our win.)
 
 
 ```pascal
@@ -76,11 +85,13 @@ minimax(origin, depth, TRUE)
 ![step1 example](https://media.geeksforgeeks.org/wp-content/uploads/minmax.png)
 and then ![filled](https://media.geeksforgeeks.org/wp-content/uploads/minmax1.png)
 
++ run `step1.py`
 
-### tree?
+### Tree?
+
 + DS? we don't know what is tree yet.
-+ paths to finish.
-+ each player make a choice and we move in tree.
++ ways to finish game.
++ each player make a choice and we move down in tree.
 
 ![XO tree](http://files.codinghell.ch/pictures/2012-08-31-Tic-tac-toe-game-tree.png)
 
@@ -99,7 +110,7 @@ and then ![filled](https://media.geeksforgeeks.org/wp-content/uploads/minmax1.pn
   1. X wins
   2. O wins
   3. Tie
-+ assume that we are x
++ assume that we play as X
   +  X wins: +1
   + O wins: -1
   + Tie: 0
@@ -144,6 +155,13 @@ if __name__ == "__main__":
 	value = evaluate(board) 
 	print("The value of this board is", value) 
 # source: https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-2-evaluation-function
-
 ```
 
++ run `./step2.py`
+
+
+
+## finally: complete Tic Tac Toe with Minimax
+
++ run `./step3.py`
++ 
