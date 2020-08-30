@@ -2,6 +2,9 @@ from random import choice
 from time import sleep
 from math import inf
 
+human = 'x'
+computer = 'o'
+
 def create_empty_board(): 
     return [['_', '_', '_'],
             ['_', '_', '_'],
@@ -11,27 +14,27 @@ def evaluate(b):
     # Checking for Rows for X or O victory.
     for row in range(0, 3):
         if b[row][0] == b[row][1] and b[row][1] == b[row][2]:
-            if b[row][0] == 'x':
+            if b[row][0] == computer:
                 return +1
-            if b[row][0] == 'o': 
+            if b[row][0] == human: 
                 return -1
     # Checking for Columns for X or O victory.
     for col in range(0, 3):
         if b[0][col] == b[1][col] and b[1][col] == b[2][col]:
-            if b[0][col] == 'x':
+            if b[0][col] == computer:
                 return +1
-            if b[0][col] == 'o':
+            if b[0][col] == human:
                 return -1
     # Checking for Diagonals for X or O victory.
     if b[0][0] == b[1][1] and b[1][1] == b[2][2]:
-        if b[0][0] == 'x':
+        if b[0][0] == computer:
             return +1
-        if b[0][0] == 'o':
+        if b[0][0] == human:
             return -1
     if b[0][2] == b[1][1] and b[1][1] == b[2][0]:
-        if b[0][2] == 'x':
+        if b[0][2] == computer:
             return +1
-        if b[0][2] == 'o':
+        if b[0][2] == human:
             return -1
     # Else if none of them have won then return 0
     return 0
@@ -74,7 +77,7 @@ def player(board):
     print("enter x ,y for your move")
     x, y = input().split()
     x, y = int(x), int(y)
-    if not set_move(x, y, board, 'o'):
+    if not set_move(x, y, board, player=human):
         # get input again
         player(board)
 
@@ -85,7 +88,7 @@ def minimax(board, depth, is_computer):
     if depth == 0 or game_over(board):
         return (-1, -1), evaluate(board)
 
-    player = 'x' if is_computer else 'o' 
+    player = computer if is_computer else human
 
     # setup minimum or maximum variable
     if is_computer: 
@@ -115,7 +118,7 @@ def ai(board):
     print("ai is thinking")
     depth = len(empty_cells(board))
     (x, y), _ = minimax(board, depth, is_computer=True)
-    set_move(x, y, board, 'x')
+    set_move(x, y, board, player=computer)
 
 if __name__ == "__main__":
     board = create_empty_board()
