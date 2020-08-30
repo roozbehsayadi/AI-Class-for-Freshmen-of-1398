@@ -258,10 +258,19 @@ if __name__ == "__main__":
 + are calculate all possible moves necessary?
 + can we prune some branches?
 + break our while if we know there is nothing good to happen!
-+ **this will not change behavior of program**, we can still determine best move with better performance
++ **this will not change behavior of program**, we can still determine best move with better performance.
++ maybe it could be optimized, maybe not.
 + add alpha, beta parameters to minimax function
 + alpha: the best value that the maximizer currently can guarantee at that level or above.
 + beta: the best value that the minimizer currently can guarantee at that level or above.
+
+![](./images/2.png)
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/MIN_MAX2.jpg)
+
+
+
+
 
 ```python
 def minimax(node, depth, isMaximizingPlayer, alpha, beta):
