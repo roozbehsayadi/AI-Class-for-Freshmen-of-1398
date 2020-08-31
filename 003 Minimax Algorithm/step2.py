@@ -30,7 +30,7 @@ def evaluate(b):
 
 # Driver code
 if __name__ == "__main__":
-    board = [["x", "_", "o"], ["_", "_", "o"], ["o", "_", "x"]]
+    board = [["x", "_", "o"], ["_", "x", "o"], ["o", "_", "x"]]
     value = evaluate(board)
     print("The value of this board is", value)
 # source: https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-2-evaluation-function

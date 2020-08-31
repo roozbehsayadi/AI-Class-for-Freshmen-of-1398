@@ -124,8 +124,8 @@ def minimax(board, depth, alpha, beta, is_computer):
             # update beta
             beta = min(beta, best[1])
 
-            if beta <= alpha:
-                break
+        if beta <= alpha:
+            break
 
     return best
 
