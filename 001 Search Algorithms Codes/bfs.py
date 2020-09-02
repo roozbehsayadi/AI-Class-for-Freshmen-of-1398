@@ -1,4 +1,5 @@
 import copy
+from collections import deque
 
 goal = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
@@ -31,12 +32,12 @@ def goal_test(list):
 
 def bfs(board):
     start = Node(board)
-    queue = []
+    queue = deque()
     queue.append(start)
 
     cost = 0
-    while True:
-        next = queue.pop(0)
+    while queue:
+        next = queue.popleft()
         print(next.board)
         children = next.expand()
         cost += 1
