@@ -33,11 +33,12 @@ for i, val in enumerate(['a','b','c']):
 
 
 ### intro: backtracking
-+ not related to Kali Linux and hack stuff
++ not related to Kali Linux and hack stuff!
 + some kind of algorithm
 + explore all possible situations
 + not optimal, but still could be useful
 + use recursion (in DFS order)
++ more on this on AI and algorithm design course
 + for example 
     1. explore all combinations to solve a Sudoko
     2. N-queen 
