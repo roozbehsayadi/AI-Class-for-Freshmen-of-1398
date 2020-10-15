@@ -7,7 +7,7 @@
 ### Why KNN?
 By now, we all know Machine Learning models makes predictionsby learning from the past data available
 
-![KNN_picture1](./pictures/KNN_picture1.jpg=600x600)
+![KNN_picture1](./pictures/KNN_picture1.jpg)
 
 Is this a dog?
 
